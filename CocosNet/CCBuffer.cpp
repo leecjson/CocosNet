@@ -327,6 +327,7 @@ void CCBuffer::clear()
 	DO_ASSIGN(_u_content_size, 0);
 	DO_ASSIGN(_u_write_pos, 0);
 	DO_ASSIGN(_u_read_pos, 0);
+	DO_ASSIGN(_u_mark_pos, 0);
 	memset(_p_buffer, 0, _u_buffer_size);
 }
 
