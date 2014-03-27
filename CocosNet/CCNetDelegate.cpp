@@ -244,7 +244,7 @@ bool CCNetDelegate::runRead()
 #endif
 		m_oReadBuffer.writeData(m_pReadBuffer, (unsigned int)nRet);
 #if USING_PACKAGE_HEAD_LENGTH
-		if( m_oReadBuffer.isReadable(sizeof(int)) )
+		while( m_oReadBuffer.isReadable(sizeof(int)) )
 		{
 			m_oReadBuffer.moveReaderIndexToFront();
 			int n_head_len = m_oReadBuffer.readInt();
@@ -264,6 +264,10 @@ bool CCNetDelegate::runRead()
 				m_oReadBuffer.moveWriterIndexToBack();
 
 				onMessageReceived(*pData);
+			}
+			else
+			{
+				break;
 			}
 		}
 #else
