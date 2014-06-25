@@ -131,6 +131,12 @@ bool CCNetDelegate::connect()
 			m_eStatus = eSocketConnecting;
 			return true;
 		}
+		else
+		{
+			m_oSocket.ccClose();
+			m_eStatus = eSocketConnectFailed;
+			onExceptionCaught(eSocketConnectFailed);
+		}
 	}
 	return false;
 }
